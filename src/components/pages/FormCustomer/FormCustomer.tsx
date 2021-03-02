@@ -1,12 +1,9 @@
 import {
   Button,
   Container,
-  createStyles,
   IconButton,
-  makeStyles,
   Paper,
   TextField,
-  Theme,
   Typography,
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -18,29 +15,16 @@ import * as Yup from 'yup';
 import { getCustomerById } from '../../../../lib/api/customers';
 import LayoutWithMenu from '../../layout/LayoutWithMenu/LayoutWithMenu';
 import FormLoadingComponent from '../../screen/FormLoading/FormLoading';
+import { Styles } from './Styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    toolbar: {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    form: {
-      marginTop: theme.spacing(3),
-      padding: theme.spacing(3),
-    },
-    submit: {
-      marginTop: theme.spacing(2),
-    },
-  })
-);
+const useStyles = Styles;
 
 interface IFormData {
   name?: string;
   email?: string;
 }
 
-export default function EditCustomer() {
+export default function FormCustomer() {
   const classes = useStyles();
   const [title, setTitle] = useState('Novo Cliente');
   const router = useRouter();

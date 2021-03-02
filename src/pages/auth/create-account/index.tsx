@@ -1,10 +1,13 @@
-import { Box, createStyles, Link, makeStyles, Theme } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import {
+  Button,
+  Divider,
+  InputAdornment,
+  Paper,
+  TextField,
+  Typography,
+  Box,
+  Link,
+} from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import LockIcon from '@material-ui/icons/Lock';
 import MailIcon from '@material-ui/icons/Mail';
@@ -13,35 +16,11 @@ import { useFormik } from 'formik';
 import NextLink from 'next/link';
 import React from 'react';
 import * as Yup from 'yup';
-import CopyrightComponent from '../components/screen/Copyright/Copyright';
-import FormLoadingComponent from '../components/screen/FormLoading/FormLoading';
+import CopyrightComponent from '../../../components/screen/Copyright/Copyright';
+import FormLoadingComponent from '../../../components/screen/FormLoading/FormLoading';
+import { Styles } from './Styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexWrap: 'wrap-reverse',
-      minHeight: '100vh',
-      gap: theme.spacing(5),
-      padding: theme.spacing(2),
-    },
-    sloganTitle: {
-      marginBottom: theme.spacing(2),
-    },
-    form: {
-      padding: theme.spacing(4),
-      maxWidth: '500px',
-    },
-    submit: {
-      marginTop: theme.spacing(2),
-    },
-    divider: {
-      margin: theme.spacing(4, 0),
-    },
-  })
-);
+const useStyles = Styles;
 
 interface IFormData {
   name?: string;
@@ -212,7 +191,7 @@ export default function CreateAccountPage() {
           Um slogan aqui
         </Typography>
         <Box mt={10}>
-          <NextLink href="login" passHref>
+          <NextLink href="/auth/login" passHref>
             <Button color="primary" startIcon={<ArrowBackIcon />}>
               Voltar
             </Button>

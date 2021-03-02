@@ -148,7 +148,7 @@ export default function CustomerList() {
         <strong>{deleteOptions.itemDescription}</strong>
       </ConfirmationDialog>
       <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         autoHideDuration={3000}
         open={messageInfo.show}
         message={messageInfo.message}

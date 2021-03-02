@@ -1,24 +1,7 @@
-import {
-  Box,
-  CircularProgress,
-  createStyles,
-  makeStyles,
-  Theme,
-} from '@material-ui/core';
+import { Box, CircularProgress } from '@material-ui/core';
+import { Styles } from './Styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    loading: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: theme.spacing(1, 0),
-    },
-    loadingProgress: {
-      marginRight: theme.spacing(1),
-    },
-  })
-);
+const useStyles = Styles;
 
 export default function FormLoadingComponent() {
   const classes = useStyles();

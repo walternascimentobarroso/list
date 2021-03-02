@@ -1,5 +1,5 @@
-import EditCustomer from '../../../components/pages/EditCustomer/EditCustomer';
+import FormCustomer from '../../../components/pages/FormCustomer/FormCustomer';
 
 export default function CustomerEdit() {
-  return <EditCustomer />;
+  return <FormCustomer />;
 }

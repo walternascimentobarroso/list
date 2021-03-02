@@ -1,44 +1,22 @@
-import { Button, createStyles, makeStyles, Theme } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import {
+  Button,
+  Divider,
+  Grid,
+  InputAdornment,
+  Paper,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 import LockIcon from '@material-ui/icons/Lock';
 import MailIcon from '@material-ui/icons/Mail';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
-import CopyrightComponent from '../components/screen/Copyright/Copyright';
-import FormLoadingComponent from '../components/screen/FormLoading/FormLoading';
+import CopyrightComponent from '../../../components/screen/Copyright/Copyright';
+import FormLoadingComponent from '../../../components/screen/FormLoading/FormLoading';
+import { Styles } from './Styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      minHeight: '100vh',
-      gap: theme.spacing(5),
-      padding: theme.spacing(2),
-    },
-    sloganTitle: {
-      marginBottom: theme.spacing(2),
-    },
-    form: {
-      padding: theme.spacing(4),
-      maxWidth: '500px',
-    },
-    submit: {
-      marginTop: theme.spacing(2),
-    },
-    divider: {
-      margin: theme.spacing(4, 0),
-    },
-  })
-);
+const useStyles = Styles;
 
 interface IFormData {
   email?: string;
@@ -141,14 +119,14 @@ export default function LoginPage() {
 
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Link href="/forgot-password" passHref>
+            <Link href="/auth/forgot-password" passHref>
               <Button variant="text" fullWidth={true}>
                 Esqueceu a senha?
               </Button>
             </Link>
           </Grid>
           <Grid item xs={12}>
-            <Link href="/create-account" passHref>
+            <Link href="/auth/create-account" passHref>
               <Button variant="text" fullWidth={true}>
                 Criar uma conta
               </Button>

@@ -7,10 +7,10 @@ export default function CopyrightComponent() {
         {'Copyright © '}
         <Link
           color="inherit"
-          href="https://fabricadecodigo.com/"
+          href="https://walternascimentobarroso.github.io/"
           target="_blank"
         >
-          Fábrica de Código
+          Walter Nascimento Barroso
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
