@@ -1,19 +1,22 @@
 import Head from 'next/head';
-import Button from '@material-ui/core/Button';
+import { Button, Grid } from '@material-ui/core';
+
 
 export default function Home() {
     return (
-        <div>
+        <Grid container spacing={3}>
             <Head>
                 <title>Home | TimeUp</title>
             </Head>
-            <div>
-                Olá
+            <Grid item xs={12}>
+                <div>
+                    Olá
 
                 <Button variant="contained" color="primary">
-                    Hello World
+                        Hello World
                 </Button>
-            </div>
-        </div>
+                </div>
+            </Grid>
+        </Grid>
     );
 }

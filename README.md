@@ -13,8 +13,14 @@ Criar o arquivo package.json
 Instalar o react e o next [https://nextjs.org/docs/getting-started](https://nextjs.org/docs/getting-started) 
 ### npm install next react react-dom
 
+usando typescript
+### npm install --save-dev typescript @types/node
+
 Rodar o projeto
 ### npm run dev
 
 Abrir o projeto endereço padrão
 [http://localhost:3000](http://localhost:3000) 
+
+Adicionando material-UI
+### npm install @material-ui/core
