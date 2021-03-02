@@ -1,21 +1,26 @@
-import Head from 'next/head';
+import { ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Layout from '../components/screen/Layout/Layout';
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import theme from '../../lib/theme';
+import '../styles/globals.css';
 
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>List</title>
+        <title>Next.js Boilerplate</title>
         <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        ></meta>
       </Head>
-      <Layout>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
-      </Layout>
+      </ThemeProvider>
     </>
   );
 }
+
+export default MyApp;
