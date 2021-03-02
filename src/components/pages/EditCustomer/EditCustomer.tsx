@@ -56,7 +56,6 @@ export default function EditCustomer() {
       .required('Obrigatório')
       .min(3, 'O nome deve ter pelo menos 3 caracteres'),
     email: Yup.string().email('E-mail inválido').required('Obrigatório'),
-    phone: Yup.string().required('Obrigatório'),
   });
 
   const formik = useFormik({
