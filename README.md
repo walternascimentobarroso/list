@@ -40,3 +40,11 @@ usando o pretti
 ### npm install --save-dev --save-exact prettier
 
 ### npx prettier --write .
+
+Install formik and yup
+
+### npm install formik
+
+### npm install -S yup
+
+### npm install @types/yup -D
