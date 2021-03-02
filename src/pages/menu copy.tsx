@@ -32,6 +32,9 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      display: 'flex',
+    },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
@@ -105,7 +108,7 @@ export default function MiniDrawer() {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -130,6 +133,46 @@ export default function MiniDrawer() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        <div className={classes.toolbar}>
+          <IconButton onClick={handleDrawerClose}>
+            <ChevronRightIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          <ListItem button key="Home" to="/">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button key="Sair">
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary="Sair" />
+            <Button variant="contained" color="primary" href="/">
+              Go to the main page
+            </Button>
+          </ListItem>
+        </List>
+      </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div>oi</div>
