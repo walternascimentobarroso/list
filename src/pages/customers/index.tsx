@@ -12,6 +12,7 @@ import {
   TableHead,
   TableRow,
   Theme,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
@@ -93,9 +94,11 @@ export default function CustomerList() {
         </div>
         <div>
           <Link href="/customers/new" passHref>
-            <Button variant="contained" color="primary">
-              Novo cliente
-            </Button>
+            <Tooltip title="Adicionar" aria-label="add" arrow>
+              <Button variant="contained" color="primary">
+                Novo cliente
+              </Button>
+            </Tooltip>
           </Link>
         </div>
       </div>
@@ -119,17 +122,21 @@ export default function CustomerList() {
                 </TableCell>
                 <TableCell>{row.email}</TableCell>
                 <TableCell>
-                  <IconButton
-                    aria-label="delete"
-                    onClick={() => handleDelete(row)}
-                  >
-                    <Delete />
-                  </IconButton>
                   <Link href={`/customers/edit/${row.id}`} passHref>
-                    <IconButton aria-label="edit">
-                      <Edit />
-                    </IconButton>
+                    <Tooltip title="Editar" aria-label="edit" arrow>
+                      <IconButton aria-label="edit">
+                        <Edit />
+                      </IconButton>
+                    </Tooltip>
                   </Link>
+                  <Tooltip title="Remover" aria-label="delete" arrow>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={() => handleDelete(row)}
+                    >
+                      <Delete />
+                    </IconButton>
+                  </Tooltip>
                 </TableCell>
               </TableRow>
             ))}
