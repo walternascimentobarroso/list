@@ -15,6 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
+import ListIcon from '@material-ui/icons/List';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { Styles } from './Styles';
@@ -29,6 +30,7 @@ export default function LayoutWithMenuComponent({ children }) {
   const menu: Array<{ name: string; to: string; icon?: ReactNode }> = [
     { name: 'Dashboard', to: '/', icon: <DashboardIcon /> },
     { name: 'Contatos', to: '/customers', icon: <PeopleIcon /> },
+    { name: 'Listas', to: '/list', icon: <ListIcon /> },
   ];
 
   const handleDrawerOpen = () => {
@@ -58,7 +60,7 @@ export default function LayoutWithMenuComponent({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Application name
+            WLIST
           </Typography>
         </Toolbar>
       </AppBar>
