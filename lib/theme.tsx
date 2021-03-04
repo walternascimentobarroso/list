@@ -1,8 +1,8 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
 
-// Create a theme instance.
-const theme = createMuiTheme({
+const themeCore = {
   breakpoints: {
     values: {
       xs: 0,
@@ -15,6 +15,20 @@ const theme = createMuiTheme({
   typography: {
     fontSize: 16,
   },
+};
+
+export const themeLight = createMuiTheme({
+  palette: {
+    type: 'light',
+  },
+  ...themeCore,
 });
 
-export default theme;
+export const themeDark = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: purple,
+    secondary: green,
+  },
+  ...themeCore,
+});
