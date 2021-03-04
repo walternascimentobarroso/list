@@ -13,6 +13,7 @@ import {
   Paper,
   Container,
   Fab,
+  Grid,
   Tooltip,
 } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
@@ -27,6 +28,16 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+  },
+  button: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    marginTop: '2rem',
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
   divider: {
     border: `1px solid ${theme.palette.divider}`,
@@ -52,66 +63,83 @@ export default function CheckboxListSecondary() {
   return (
     <LayoutWithMenu>
       <Container>
-        <Paper elevation={3}>
-          {[0, 1, 2, 3].map((value) => {
-            return (
-              <Accordion key={value}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-label="Expand"
-                  aria-controls={`additional-${value}-content`}
-                  id={`additional-${value}-header`}
-                >
-                  <FormControlLabel
-                    aria-label="Acknowledge"
-                    onClick={(event) => event.stopPropagation()}
-                    onFocus={(event) => event.stopPropagation()}
-                    control={<Checkbox />}
-                    label=""
-                  />
-                  <ListItemAvatar>
-                    <Avatar>
-                      <ImageIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <Typography className={classes.heading}>Sal</Typography>
-                  <Typography className={classes.secondaryHeading}>
-                    3 UN
-                  </Typography>
-                  <Divider
-                    orientation="vertical"
-                    flexItem
-                    className={classes.divider}
-                  />
-                  <Typography className={classes.secondaryHeading}>
-                    R$ 5,99
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography color="textSecondary">
+        {[0, 1, 2, 3].map((value) => {
+          return (
+            <Accordion key={value}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-label="Expand"
+                aria-controls={`additional-${value}-content`}
+                id={`additional-${value}-header`}
+              >
+                <FormControlLabel
+                  aria-label="Acknowledge"
+                  onClick={(event) => event.stopPropagation()}
+                  onFocus={(event) => event.stopPropagation()}
+                  control={<Checkbox />}
+                  label=""
+                />
+                <ListItemAvatar>
+                  <Avatar>
+                    <ImageIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <Typography className={classes.heading}>Sal</Typography>
+                <Typography className={classes.secondaryHeading}>
+                  3 UN
+                </Typography>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  className={classes.divider}
+                />
+                <Typography className={classes.secondaryHeading}>
+                  R$ 5,99
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography color="textSecondary">
+                  <Tooltip title="Editar" aria-label="edit" arrow>
                     <Button
                       variant="outlined"
                       color="primary"
                       startIcon={<EditIcon />}
+                      className={classes.button}
                     >
                       Editar
                     </Button>
+                  </Tooltip>
+                  <Tooltip title="Remover" aria-label="delete" arrow>
                     <Button
                       variant="outlined"
                       color="secondary"
                       startIcon={<DeleteIcon />}
+                      className={classes.button}
                     >
                       Remover
                     </Button>
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            );
-          })}
-        </Paper>
+                  </Tooltip>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          );
+        })}
 
-        <Paper elevation={3} square>
-          Total
+        <Paper elevation={3} className={classes.paper}>
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <Typography className={classes.secondaryHeading}>
+                Total
+              </Typography>
+              <Typography className={classes.heading}>R$ 5,99</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography className={classes.secondaryHeading}>
+                Marcados
+              </Typography>
+              <Typography className={classes.heading}>R$ 5,99</Typography>
+            </Grid>
+          </Grid>
         </Paper>
       </Container>
 
