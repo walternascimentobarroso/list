@@ -9,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
+  Switch,
   Typography,
 } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -20,9 +21,13 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { Styles } from './Styles';
 
+import { useContext } from 'react'
+import ThemeContext from '../../../contexts/Theme'
+
 const useStyles = Styles;
 
 export default function LayoutWithMenuComponent({ children }) {
+  const { toggleDark } = useContext(ThemeContext);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -96,6 +101,7 @@ export default function LayoutWithMenuComponent({ children }) {
         })}
       >
         <div className={classes.drawerHeader} />
+        <Switch  onChange={() => toggleDark()} />
         {children}
       </main>
     </div>
