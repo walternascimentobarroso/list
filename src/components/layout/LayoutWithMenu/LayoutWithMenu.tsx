@@ -11,8 +11,10 @@ import {
   Toolbar,
   Switch,
   Typography,
+  Tooltip,
 } from '@material-ui/core';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
@@ -60,7 +62,9 @@ export default function LayoutWithMenuComponent({ children }) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
           >
             <MenuIcon />
           </IconButton>
@@ -70,37 +74,39 @@ export default function LayoutWithMenuComponent({ children }) {
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
         classes={{
-          paper: classes.drawerPaper,
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
         }}
       >
-        <div className={classes.drawerHeader}>
+        <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronRightIcon />
+            <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
         <List>
           {menu.map((menuItem, index) => (
             <Link key={index} href={menuItem.to} passHref>
-              <ListItem button component="a">
-                <ListItemIcon>{menuItem.icon}</ListItemIcon>
-                <ListItemText primary={menuItem.name} />
-              </ListItem>
+              <Tooltip title={menuItem.name} aria-label="add" arrow placement="right">
+                <ListItem button component="a">
+                  <ListItemIcon>{menuItem.icon}</ListItemIcon>
+                  <ListItemText primary={menuItem.name} />
+                </ListItem>
+              </Tooltip>
             </Link>
           ))}
         </List>
       </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
         <Switch  onChange={() => toggleDark()} />
         {children}
       </main>
