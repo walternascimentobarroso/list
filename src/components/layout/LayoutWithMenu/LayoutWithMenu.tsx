@@ -13,6 +13,8 @@ import {
   Typography,
   Tooltip,
 } from '@material-ui/core';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -29,7 +31,7 @@ import ThemeContext from '../../../contexts/Theme'
 const useStyles = Styles;
 
 export default function LayoutWithMenuComponent({ children }) {
-  const { toggleDark } = useContext(ThemeContext);
+  const { isDark, toggleDark } = useContext(ThemeContext);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -68,9 +70,14 @@ export default function LayoutWithMenuComponent({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap className={classes.title}>
             WLIST
           </Typography>
+          <Tooltip title="Alterar Tema dark/light" aria-label="add" arrow placement="bottom">
+            <IconButton onClick={() => toggleDark()} color="inherit">
+            {isDark ? <Brightness7Icon/> : <Brightness4Icon/> }
+              </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -107,7 +114,6 @@ export default function LayoutWithMenuComponent({ children }) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Switch  onChange={() => toggleDark()} />
         {children}
       </main>
     </div>

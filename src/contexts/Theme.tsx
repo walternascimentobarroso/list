@@ -3,6 +3,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { themeLight, themeDark } from '../../lib/theme';
 
 const ThemeContext = createContext({
+  isDark: false,
   theme: {},
   toggleDark: () => {}
 })
@@ -23,6 +24,7 @@ const DarkThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider
       value={{
+        isDark,
         theme,
         toggleDark
       }}
