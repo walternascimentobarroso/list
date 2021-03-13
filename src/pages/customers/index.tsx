@@ -4,7 +4,6 @@ import {
   IconButton,
   makeStyles,
   Paper,
-  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -20,6 +19,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import LayoutWithMenu from '../../components/layout/LayoutWithMenu/LayoutWithMenu';
 import ConfirmationDialog from '../../components/screen/ConfirmationDialog/ConfirmationDialog';
+import SnackbarCustom from '../../components/screen/SnackbarCustom/SnackbarCustom';
 import { getCustomers } from '../../../lib/api/customers';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -45,10 +45,8 @@ export default function CustomerList() {
     itemDescription?: string;
   }>({ show: false });
 
-  const [messageInfo, setMessageInfo] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: '' });
+  const [snackbarInfo, setSnackbarInfo] = useState({ show: false, message: '', type: 'success' });
+  const handleCloseMessage = () => setSnackbarInfo({ show: false, message: '', type: 'success' });
 
   const handleDelete = (item: any) => {
     setDeleteOptions({
@@ -58,30 +56,19 @@ export default function CustomerList() {
     });
   };
 
+
   const handleDeleteCallBack = (value: string) => {
     const { itemId } = deleteOptions;
     setDeleteOptions({ show: false, itemId: null, itemDescription: null });
 
     if (value === 'ok') {
       // deleta
-      setMessageInfo({ show: true, message: 'Item excluído com sucesso' });
+      setSnackbarInfo({ show: true, message: 'Item excluído com sucesso', type: 'success' });
     }
-  };
-
-  const handleCloseMessage = (
-    event: React.SyntheticEvent | React.MouseEvent,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setMessageInfo({ show: false, message: '' });
   };
 
   useEffect(() => {
     getCustomers().then((rowsResult) => setRows(rowsResult));
-    console.log('Teste');
   }, []);
 
   return (
@@ -154,14 +141,7 @@ export default function CustomerList() {
         Confirma a exclusão do item{' '}
         <strong>{deleteOptions.itemDescription}</strong>
       </ConfirmationDialog>
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        autoHideDuration={3000}
-        open={messageInfo.show}
-        message={messageInfo.message}
-        key={messageInfo.message}
-        onClose={handleCloseMessage}
-      />
+      <SnackbarCustom info={snackbarInfo} onClose={handleCloseMessage} />
     </LayoutWithMenu>
   );
 }
