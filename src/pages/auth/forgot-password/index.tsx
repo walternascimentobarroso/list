@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import NextLink from 'next/link';
 import * as Yup from 'yup';
 import CopyrightComponent from '../../../components/screen/Copyright/Copyright';
-import FormLoadingComponent from '../../../components/screen/FormLoading/FormLoading';
+import Loading from '../../../components/screen/Loading/Loading';
 import { Styles } from './Styles';
 
 const useStyles = Styles;
@@ -86,7 +86,7 @@ export default function CreateAccountPage() {
           >
             Esqueci a minha senha
           </Button>
-          {formik.isSubmitting && <FormLoadingComponent />}
+          {formik.isSubmitting && <Loading />}
         </form>
 
         <Divider className={classes.divider} variant="fullWidth" />

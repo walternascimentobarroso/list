@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { getCustomerById } from '../../../../lib/api/customers';
 import LayoutWithMenu from '../../layout/LayoutWithMenu/LayoutWithMenu';
-import FormLoadingComponent from '../../screen/FormLoading/FormLoading';
+import Loading from '../../screen/Loading/Loading';
 import { Styles } from './Styles';
 
 const useStyles = Styles;
@@ -119,7 +119,7 @@ export default function FormCustomer() {
             >
               Salvar
             </Button>
-            {formik.isSubmitting && <FormLoadingComponent />}
+            {formik.isSubmitting && <Loading />}
           </form>
         </Paper>
       </Container>

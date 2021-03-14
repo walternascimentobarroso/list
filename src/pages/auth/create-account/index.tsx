@@ -17,7 +17,7 @@ import NextLink from 'next/link';
 import React from 'react';
 import * as Yup from 'yup';
 import CopyrightComponent from '../../../components/screen/Copyright/Copyright';
-import FormLoadingComponent from '../../../components/screen/FormLoading/FormLoading';
+import Loading from '../../../components/screen/Loading/Loading';
 import { Styles } from './Styles';
 
 const useStyles = Styles;
@@ -170,7 +170,7 @@ export default function CreateAccountPage() {
           >
             Criar minha conta
           </Button>
-          {formik.isSubmitting && <FormLoadingComponent />}
+          {formik.isSubmitting && <Loading />}
         </form>
 
         <p>
