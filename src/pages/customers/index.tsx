@@ -21,19 +21,9 @@ import LayoutWithMenu from '../../components/layout/LayoutWithMenu/LayoutWithMen
 import ConfirmationDialog from '../../components/screen/ConfirmationDialog/ConfirmationDialog';
 import SnackbarCustom from '../../components/screen/SnackbarCustom/SnackbarCustom';
 import { getCustomers } from '../../../lib/api/customers';
+import { Styles } from './Styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    toolbar: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    table: {
-      marginTop: theme.spacing(3),
-    },
-  })
-);
+const useStyles = Styles;
 
 export default function CustomerList() {
   const classes = useStyles();

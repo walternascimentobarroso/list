@@ -21,36 +21,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import ImageIcon from '@material-ui/icons/Image';
 import LayoutWithMenu from '../../components/layout/LayoutWithMenu/LayoutWithMenu';
 import ZoomFab from '../../components/screen/ZoomFab/ZoomFab';
+import { Styles } from './Styles';
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    marginTop: '2rem',
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  divider: {
-    border: `1px solid ${theme.palette.divider}`,
-    margin: '0 1rem',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '66.66%',
-    flexShrink: 0,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-    display: 'flex',
-    alignItems: 'center',
-  },
-}));
+const useStyles = Styles;
+
 export default function CheckboxListSecondary() {
   const classes = useStyles();
 
