@@ -2,12 +2,15 @@ import {
   Button,
   Divider,
   InputAdornment,
+  IconButton,
   Paper,
   TextField,
   Typography,
   Box,
   Link,
 } from '@material-ui/core';
+import {useState} from 'react';
+import {Visibility, VisibilityOff} from '@material-ui/icons';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import LockIcon from '@material-ui/icons/Lock';
 import MailIcon from '@material-ui/icons/Mail';
@@ -31,6 +34,10 @@ interface IFormData {
 
 export default function CreateAccountPage() {
   const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
   const initialValues: IFormData = {
     name: '',
@@ -118,7 +125,7 @@ export default function CreateAccountPage() {
             fullWidth
             name="password"
             placeholder="Uma senha"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             id="password"
             autoComplete="current-password"
             InputProps={{
@@ -127,6 +134,13 @@ export default function CreateAccountPage() {
                   <LockIcon />
                 </InputAdornment>
               ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={handleClickShowPassword}>
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              )
             }}
             onChange={formik.handleChange}
             value={formik.values.password}
@@ -139,7 +153,7 @@ export default function CreateAccountPage() {
             fullWidth
             name="confirmPassword"
             placeholder="Confirme sua senha"
-            type="password"
+            type={showConfirmPassword ? 'text' : 'password'}
             id="confirmPassword"
             autoComplete="off"
             InputProps={{
@@ -148,6 +162,13 @@ export default function CreateAccountPage() {
                   <LockIcon />
                 </InputAdornment>
               ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={handleClickShowConfirmPassword}>
+                    {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              )
             }}
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
