@@ -8,8 +8,8 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import {useState} from 'react';
-import {Visibility, VisibilityOff} from '@material-ui/icons';
+import { useState } from 'react';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import LockIcon from '@material-ui/icons/Lock';
 import MailIcon from '@material-ui/icons/Mail';
 import { useFormik } from 'formik';
@@ -101,12 +101,12 @@ export default function LoginPage() {
                 </InputAdornment>
               ),
               endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={handleClickShowPassword}>
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-              )
+                <InputAdornment position="end">
+                  <IconButton onClick={handleClickShowPassword}>
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
             onChange={formik.handleChange}
             value={formik.values.password}

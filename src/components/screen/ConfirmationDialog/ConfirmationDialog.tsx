@@ -37,13 +37,8 @@ export default function ConfirmationDialog(props: IConfirmationDialogProps) {
     ...other
   } = props;
 
-  const handleCancel = () => {
-    onClose('cancel');
-  };
-
-  const handleOk = () => {
-    onClose('ok');
-  };
+  const handleCancel = () => onClose('cancel');
+  const handleOk = () => onClose('ok');
 
   return (
     <Dialog

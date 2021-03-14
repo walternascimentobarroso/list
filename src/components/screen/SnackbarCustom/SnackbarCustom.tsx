@@ -1,4 +1,4 @@
-import {Snackbar} from '@material-ui/core';
+import { Snackbar } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -7,9 +7,16 @@ function Alert(props) {
 }
 
 export default function SnackbarCustom(props) {
-  const { info: { show, message, type }, onClose  } = props;
-  const [messageInfo, setMessageInfo] = useState({ show: false, message: '', type: 'success' });
-  
+  const {
+    info: { show, message, type },
+    onClose,
+  } = props;
+  const [messageInfo, setMessageInfo] = useState({
+    show: false,
+    message: '',
+    type: 'success',
+  });
+
   useEffect(() => {
     setMessageInfo({ show: show, message: message, type: type });
   }, [show, message, type]);
@@ -23,7 +30,7 @@ export default function SnackbarCustom(props) {
       onClose={onClose}
     >
       <Alert onClose={onClose} severity={type}>
-      {messageInfo.message}
+        {messageInfo.message}
       </Alert>
     </Snackbar>
   );

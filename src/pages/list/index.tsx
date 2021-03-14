@@ -21,12 +21,17 @@ import EditIcon from '@material-ui/icons/Edit';
 import ImageIcon from '@material-ui/icons/Image';
 import LayoutWithMenu from '../../components/layout/LayoutWithMenu/LayoutWithMenu';
 import ZoomFab from '../../components/screen/ZoomFab/ZoomFab';
+import FormList from '../../components/pages/FormList/FormList';
 import { Styles } from './Styles';
 
 const useStyles = Styles;
 
 export default function CheckboxListSecondary() {
   const classes = useStyles();
+
+  const handleCreateList = () => {
+    console.log('lol');
+  };
 
   return (
     <LayoutWithMenu>
@@ -110,7 +115,8 @@ export default function CheckboxListSecondary() {
           </Grid>
         </Paper>
       </Container>
-      <ZoomFab />
+      <ZoomFab onClick={handleCreateList} />
+      <FormList />
     </LayoutWithMenu>
   );
 }

@@ -13,20 +13,21 @@ import {
   Typography,
   Tooltip,
 } from '@material-ui/core';
+
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import ListIcon from '@material-ui/icons/List';
+
 import clsx from 'clsx';
 import Link from 'next/link';
-import { Styles } from './Styles';
 
-import { useContext } from 'react'
-import ThemeContext from '../../../contexts/Theme'
+import { Styles } from './Styles';
+import { useContext } from 'react';
+import ThemeContext from '../../../contexts/Theme';
 
 const useStyles = Styles;
 
@@ -73,10 +74,15 @@ export default function LayoutWithMenuComponent({ children }) {
           <Typography variant="h6" noWrap className={classes.title}>
             WLIST
           </Typography>
-          <Tooltip title="Alterar Tema dark/light" aria-label="add" arrow placement="bottom">
+          <Tooltip
+            title="Alterar Tema dark/light"
+            aria-label="add"
+            arrow
+            placement="bottom"
+          >
             <IconButton onClick={() => toggleDark()} color="inherit">
-            {isDark ? <Brightness7Icon/> : <Brightness4Icon/> }
-              </IconButton>
+              {isDark ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
           </Tooltip>
         </Toolbar>
       </AppBar>
@@ -102,7 +108,12 @@ export default function LayoutWithMenuComponent({ children }) {
         <List>
           {menu.map((menuItem, index) => (
             <Link key={index} href={menuItem.to} passHref>
-              <Tooltip title={menuItem.name} aria-label="add" arrow placement="right">
+              <Tooltip
+                title={menuItem.name}
+                aria-label="add"
+                arrow
+                placement="right"
+              >
                 <ListItem button component="a">
                   <ListItemIcon>{menuItem.icon}</ListItemIcon>
                   <ListItemText primary={menuItem.name} />

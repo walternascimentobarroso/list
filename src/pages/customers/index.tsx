@@ -35,8 +35,13 @@ export default function CustomerList() {
     itemDescription?: string;
   }>({ show: false });
 
-  const [snackbarInfo, setSnackbarInfo] = useState({ show: false, message: '', type: 'success' });
-  const handleCloseMessage = () => setSnackbarInfo({ show: false, message: '', type: 'success' });
+  const [snackbarInfo, setSnackbarInfo] = useState({
+    show: false,
+    message: '',
+    type: 'success',
+  });
+  const handleCloseMessage = () =>
+    setSnackbarInfo({ ...snackbarInfo, show: false });
 
   const handleDelete = (item: any) => {
     setDeleteOptions({
@@ -46,14 +51,17 @@ export default function CustomerList() {
     });
   };
 
-
   const handleDeleteCallBack = (value: string) => {
     const { itemId } = deleteOptions;
     setDeleteOptions({ show: false, itemId: null, itemDescription: null });
 
     if (value === 'ok') {
       // deleta
-      setSnackbarInfo({ show: true, message: 'Item excluído com sucesso', type: 'success' });
+      setSnackbarInfo({
+        show: true,
+        message: 'Item excluído com sucesso',
+        type: 'success',
+      });
     }
   };
 

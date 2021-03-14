@@ -9,8 +9,8 @@ import {
   Box,
   Link,
 } from '@material-ui/core';
-import {useState} from 'react';
-import {Visibility, VisibilityOff} from '@material-ui/icons';
+import { useState } from 'react';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import LockIcon from '@material-ui/icons/Lock';
 import MailIcon from '@material-ui/icons/Mail';
@@ -37,7 +37,8 @@ export default function CreateAccountPage() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   const initialValues: IFormData = {
     name: '',
@@ -140,7 +141,7 @@ export default function CreateAccountPage() {
                     {showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
             onChange={formik.handleChange}
             value={formik.values.password}
@@ -168,7 +169,7 @@ export default function CreateAccountPage() {
                     {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
