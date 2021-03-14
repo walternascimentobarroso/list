@@ -12,23 +12,17 @@ import {
   Avatar,
   Paper,
   Container,
-  Fab,
   Grid,
   Tooltip,
 } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ImageIcon from '@material-ui/icons/Image';
 import LayoutWithMenu from '../../components/layout/LayoutWithMenu/LayoutWithMenu';
+import ZoomFab from '../../components/screen/ZoomFab/ZoomFab';
 
 const useStyles = makeStyles((theme) => ({
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
   button: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -142,12 +136,7 @@ export default function CheckboxListSecondary() {
           </Grid>
         </Paper>
       </Container>
-
-      <Tooltip title="Adicionar" aria-label="add" arrow>
-        <Fab color="secondary" className={classes.fab}>
-          <Add />
-        </Fab>
-      </Tooltip>
+      <ZoomFab />
     </LayoutWithMenu>
   );
 }
