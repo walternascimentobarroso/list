@@ -28,10 +28,15 @@ const useStyles = Styles;
 
 export default function CheckboxListSecondary() {
   const classes = useStyles();
-  const [openCreateList, setOpenCreateList] = useState(false);
 
-  const handleCreateList = () => setOpenCreateList(true);
-  const closeCreateList = () => setOpenCreateList(false);
+  const [modalInfo, setModalInfo] = useState({
+    show: false,
+    title: '',
+  });
+
+  const handleCreateList = () =>
+    setModalInfo({ show: true, title: 'Novo Item' });
+  const closeCreateList = () => setModalInfo({ ...modalInfo, show: false });
 
   return (
     <LayoutWithMenu>
@@ -116,7 +121,7 @@ export default function CheckboxListSecondary() {
         </Paper>
       </Container>
       <ZoomFab onClick={handleCreateList} />
-      <FormList onOpen={openCreateList} onClose={closeCreateList} />
+      <FormList info={modalInfo} onClose={closeCreateList} />
     </LayoutWithMenu>
   );
 }

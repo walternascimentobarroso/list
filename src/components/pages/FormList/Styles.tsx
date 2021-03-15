@@ -6,6 +6,10 @@ export const Styles = makeStyles((theme: Theme) =>
       margin: 0,
       padding: theme.spacing(2),
     },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 300,
+    },
     closeButton: {
       position: 'absolute',
       right: theme.spacing(1),

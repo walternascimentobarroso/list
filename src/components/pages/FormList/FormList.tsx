@@ -1,5 +1,14 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
+import { useState } from 'react';
+import {
+  Button,
+  InputLabel,
+  FormControl,
+  OutlinedInput,
+  InputAdornment,
+  Select,
+  MenuItem,
+  TextField,
+} from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -13,41 +22,89 @@ const useStyles = Styles;
 
 export default function FormList(props) {
   const classes = useStyles();
-  const {onOpen, onClose} = props;
+  const {
+    info: { show, title },
+    onClose,
+  } = props;
+
+  const [age, setAge] = useState('');
+
+  const handleChange = (event) => setAge(event.target.value);
 
   return (
     <div>
-      <Dialog onClose={onClose} open={onOpen}>
+      <Dialog onClose={onClose} open={show}>
         <MuiDialogTitle>
-          <Typography>Modal title</Typography>
-            <IconButton
-              aria-label="close"
-              className={classes.closeButton}
-              onClick={onClose}
-            >
-              <CloseIcon />
-            </IconButton>
+          <Typography>{title}</Typography>
+          <IconButton
+            aria-label="close"
+            className={classes.closeButton}
+            onClick={onClose}
+          >
+            <CloseIcon />
+          </IconButton>
         </MuiDialogTitle>
         <MuiDialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-            auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-            dui. Donec ullamcorper nulla non metus auctor fringilla.
-          </Typography>
+          <FormControl
+            variant="outlined"
+            fullWidth
+            className={classes.formControl}
+          >
+            <TextField id="description" label="Descrição" variant="outlined" />
+          </FormControl>
+
+          <FormControl
+            variant="outlined"
+            fullWidth
+            className={classes.formControl}
+          >
+            <TextField id="image" label="Imagem" variant="outlined" />
+          </FormControl>
+
+          <FormControl
+            variant="outlined"
+            fullWidth
+            className={classes.formControl}
+          >
+            <InputLabel id="unit">Age</InputLabel>
+            <Select
+              label="unit"
+              id="unit"
+              value={age}
+              onChange={handleChange}
+              renderValue={(value) => `⚠️  - ${value}`}
+            >
+              <MenuItem value="" disabled>
+                Placeholder
+              </MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl
+            fullWidth
+            variant="outlined"
+            className={classes.formControl}
+          >
+            <InputLabel htmlFor="value">Valor</InputLabel>
+            <OutlinedInput
+              id="value"
+              type="number"
+              startAdornment={
+                <InputAdornment position="start"> R$ </InputAdornment>
+              }
+              labelWidth={60}
+            />
+          </FormControl>
         </MuiDialogContent>
         <MuiDialogActions>
           <Button autoFocus onClick={onClose} color="primary">
-            Save changes
+            Cancelar
+          </Button>
+          <Button autoFocus onClick={onClose} color="secondary">
+            Salvar
           </Button>
         </MuiDialogActions>
       </Dialog>
