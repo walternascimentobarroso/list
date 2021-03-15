@@ -1,8 +1,6 @@
 import {
   Button,
-  createStyles,
   IconButton,
-  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -10,7 +8,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Theme,
   Tooltip,
   Typography,
 } from '@material-ui/core';

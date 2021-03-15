@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { useState } from 'react';
 import {
   Accordion,
   AccordionSummary,
@@ -28,10 +28,10 @@ const useStyles = Styles;
 
 export default function CheckboxListSecondary() {
   const classes = useStyles();
+  const [openCreateList, setOpenCreateList] = useState(false);
 
-  const handleCreateList = () => {
-    console.log('lol');
-  };
+  const handleCreateList = () => setOpenCreateList(true);
+  const closeCreateList = () => setOpenCreateList(false);
 
   return (
     <LayoutWithMenu>
@@ -116,7 +116,7 @@ export default function CheckboxListSecondary() {
         </Paper>
       </Container>
       <ZoomFab onClick={handleCreateList} />
-      <FormList />
+      <FormList onOpen={openCreateList} onClose={closeCreateList} />
     </LayoutWithMenu>
   );
 }
