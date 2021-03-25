@@ -11,8 +11,8 @@ const useStyles = Styles;
 export default function ImageUpload() {
   const classes = useStyles();
   const inputFile = useRef(null);
-  const [urlImage, setUrlImage]:any = useState();
-  const handleUploadClick = event => {
+  const [urlImage, setUrlImage]: any = useState('#');
+  const handleUploadClick = (event) => {
     let reader = new FileReader();
     let file = event.target.files[0];
 
@@ -24,13 +24,13 @@ export default function ImageUpload() {
     <div className={classes.root}>
       <ButtonBase
         focusRipple
-        key='Imagem'
+        key="Imagem"
         className={classes.image}
         focusVisibleClassName={classes.focusVisible}
         style={{
           width: '40%',
         }}
-        onClick={()=> inputFile.current.click()}
+        onClick={() => inputFile.current.click()}
       >
         <span
           className={classes.imageSrc}
@@ -47,9 +47,20 @@ export default function ImageUpload() {
             className={classes.imageTitle}
           >
             Upload
-            <input ref={inputFile} accept="image/*" hidden onChange={handleUploadClick} id="icon-button-file" type="file" />
+            <input
+              ref={inputFile}
+              accept="image/*"
+              hidden
+              onChange={handleUploadClick}
+              id="icon-button-file"
+              type="file"
+            />
             <label htmlFor="icon-button-file">
-              <IconButton color="primary" aria-label="upload picture" component="span">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
                 <PhotoCamera />
               </IconButton>
             </label>

@@ -22,6 +22,9 @@ import ImageIcon from '@material-ui/icons/Image';
 import LayoutWithMenu from '../../components/layout/LayoutWithMenu/LayoutWithMenu';
 import ZoomFab from '../../components/screen/ZoomFab/ZoomFab';
 import FormList from '../../components/pages/FormList/FormList';
+import SnackbarCustom from '../../components/screen/SnackbarCustom/SnackbarCustom';
+import ConfirmationDialog from '../../components/screen/ConfirmationDialog/ConfirmationDialog';
+
 import { Styles } from './Styles';
 
 const useStyles = Styles;
@@ -33,11 +36,46 @@ export default function CheckboxListSecondary() {
     show: false,
     title: '',
   });
+  const [snackbarInfo, setSnackbarInfo] = useState({
+    show: false,
+    message: '',
+    type: 'success',
+  });
+  const [deleteOptions, setDeleteOptions] = useState<{
+    show: boolean;
+    itemId?: number;
+    itemDescription?: string;
+  }>({ show: false });
+
+  const handleCloseMessage = () =>
+    setSnackbarInfo({ ...snackbarInfo, show: false });
 
   const handleCreateList = () =>
     setModalInfo({ show: true, title: 'Novo Item' });
+
+  const handleDelete = (item: any) => {
+    setDeleteOptions({
+      show: true,
+      itemId: item.id,
+      itemDescription: item.name,
+    });
+  };
+
+  const handleDeleteCallBack = (value: string) => {
+    setDeleteOptions({ show: false, itemId: null, itemDescription: null });
+
+    if (value === 'ok') {
+      // deleta
+      setSnackbarInfo({
+        show: true,
+        message: 'Item excluído com sucesso',
+        type: 'success',
+      });
+    }
+  };
   const closeCreateList = () => setModalInfo({ ...modalInfo, show: false });
-  const handleEditList = () => setModalInfo({ show: true, title: 'Editar Item' });
+  const handleEditList = () =>
+    setModalInfo({ show: true, title: 'Editar Item' });
   return (
     <LayoutWithMenu>
       <Container>
@@ -94,6 +132,7 @@ export default function CheckboxListSecondary() {
                       color="secondary"
                       startIcon={<DeleteIcon />}
                       className={classes.button}
+                      onClick={() => handleDelete({ id: '1', name: 'lol' })}
                     >
                       Remover
                     </Button>
@@ -123,6 +162,18 @@ export default function CheckboxListSecondary() {
       </Container>
       <ZoomFab onClick={handleCreateList} />
       <FormList info={modalInfo} onClose={closeCreateList} />
+      <ConfirmationDialog
+        id={`delete-${deleteOptions.itemId}`}
+        title="Excluir"
+        confirmButtonText="Excluir"
+        keepMounted
+        open={deleteOptions.show}
+        onClose={handleDeleteCallBack}
+      >
+        Confirma a exclusão do item{' '}
+        <strong>{deleteOptions.itemDescription}</strong>
+      </ConfirmationDialog>
+      <SnackbarCustom info={snackbarInfo} onClose={handleCloseMessage} />
     </LayoutWithMenu>
   );
 }

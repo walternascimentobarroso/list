@@ -49,7 +49,6 @@ export default function CustomerList() {
   };
 
   const handleDeleteCallBack = (value: string) => {
-    const { itemId } = deleteOptions;
     setDeleteOptions({ show: false, itemId: null, itemDescription: null });
 
     if (value === 'ok') {

@@ -27,13 +27,17 @@ import { Styles } from './Styles';
 
 const useStyles = Styles;
 
-const Transition = forwardRef<unknown, TransitionProps>((props, ref) => <Slide direction="up" ref={ref} {...props} />);
-
+const Transition = forwardRef(function Transition(
+  props: TransitionProps & { children?: React.ReactElement<any, any> },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function FormList(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('xl'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
 
   const {
     info: { show, title },
@@ -46,7 +50,14 @@ export default function FormList(props) {
 
   return (
     <div>
-      <Dialog onClose={onClose} open={show} fullScreen={fullScreen} TransitionComponent={Transition}>
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        onClose={onClose}
+        open={show}
+        fullScreen={fullScreen}
+        TransitionComponent={Transition}
+      >
         <MuiDialogTitle>
           <Typography>{title}</Typography>
           <IconButton
