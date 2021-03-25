@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import {
   Button,
   InputLabel,
@@ -16,24 +16,37 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import Slide from '@material-ui/core/Slide';
+import { TransitionProps } from '@material-ui/core/transitions';
+
+import ImageUpload from '../../screen/ImageUpload/ImageUpload';
+
 import { Styles } from './Styles';
 
 const useStyles = Styles;
 
+const Transition = forwardRef<unknown, TransitionProps>((props, ref) => <Slide direction="up" ref={ref} {...props} />);
+
+
 export default function FormList(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('xl'));
+
   const {
     info: { show, title },
     onClose,
   } = props;
 
-  const [age, setAge] = useState('');
+  const [unit, setUnit] = useState('');
 
-  const handleChange = (event) => setAge(event.target.value);
+  const handleChange = (event) => setUnit(event.target.value);
 
   return (
     <div>
-      <Dialog onClose={onClose} open={show}>
+      <Dialog onClose={onClose} open={show} fullScreen={fullScreen} TransitionComponent={Transition}>
         <MuiDialogTitle>
           <Typography>{title}</Typography>
           <IconButton
@@ -58,7 +71,7 @@ export default function FormList(props) {
             fullWidth
             className={classes.formControl}
           >
-            <TextField id="image" label="Imagem" variant="outlined" />
+            <ImageUpload />
           </FormControl>
 
           <FormControl
@@ -66,17 +79,15 @@ export default function FormList(props) {
             fullWidth
             className={classes.formControl}
           >
-            <InputLabel id="unit">Age</InputLabel>
+            <InputLabel id="unit">Unidade de Medida</InputLabel>
             <Select
-              label="unit"
+              label="Unidade de Medida"
               id="unit"
-              value={age}
+              value={unit}
               onChange={handleChange}
               renderValue={(value) => `⚠️  - ${value}`}
             >
-              <MenuItem value="" disabled>
-                Placeholder
-              </MenuItem>
+              <MenuItem disabled>Unidade de Medida</MenuItem>
               <MenuItem value={10}>Ten</MenuItem>
               <MenuItem value={20}>Twenty</MenuItem>
               <MenuItem value={30}>Thirty</MenuItem>

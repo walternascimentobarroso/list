@@ -37,7 +37,7 @@ export default function CheckboxListSecondary() {
   const handleCreateList = () =>
     setModalInfo({ show: true, title: 'Novo Item' });
   const closeCreateList = () => setModalInfo({ ...modalInfo, show: false });
-
+  const handleEditList = () => setModalInfo({ show: true, title: 'Editar Item' });
   return (
     <LayoutWithMenu>
       <Container>
@@ -83,6 +83,7 @@ export default function CheckboxListSecondary() {
                       color="primary"
                       startIcon={<EditIcon />}
                       className={classes.button}
+                      onClick={handleEditList}
                     >
                       Editar
                     </Button>
