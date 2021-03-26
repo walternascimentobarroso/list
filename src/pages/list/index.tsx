@@ -81,7 +81,7 @@ export default function CheckboxListSecondary() {
       <Container>
         {[0, 1, 2, 3].map((value) => {
           return (
-            <Accordion key={value}>
+            <Accordion key={value} className={classes.checkedBackground}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-label="Expand"
@@ -100,7 +100,7 @@ export default function CheckboxListSecondary() {
                     <ImageIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <Typography className={classes.heading}>Sal</Typography>
+                <Typography className={`${classes.heading} ${classes.checked}`}>Sal</Typography>
                 <Typography className={classes.secondaryHeading}>
                   3 UN
                 </Typography>

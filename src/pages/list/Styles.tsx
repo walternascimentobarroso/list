@@ -29,5 +29,11 @@ export const Styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
     },
+    checked: {
+      textDecoration: 'line-through',
+    },
+    checkedBackground: {
+      background: '#ccc'
+    }
   })
 );
